@@ -63,8 +63,8 @@ export default class AnnotationDiv{
         this.expandedDiv.innerHTML = `
                 <p class="art-title">${title}</p>
                 <p class="art-description">${description}</p>
-                <a class="twitter-acc" href="https://x.com/${artist}" target="_blank" rel="noopener noreferrer">@${artist}</a>
-    `
+                `
+                // <a class="twitter-acc" href="https://x.com/${artist}" target="_blank" rel="noopener noreferrer">@${artist}</a>
 
     }
 

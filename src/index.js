@@ -32,7 +32,7 @@ const scene = new THREE.Scene();
 let model = null;
 let menuOpen = false;
 
-let currentMuseumId = Museum.ART_GALLERY;
+let currentMuseumId = Museum.LOUVRE;
 
 const STEPS_PER_FRAME = 5;
 let fpView;
@@ -111,20 +111,20 @@ function initMenu() {
 
   document.getElementById("menu-close").addEventListener("click", closeMenu);
 
-  const menuList = document.getElementById("menu-selection-list");
+  // const menuList = document.getElementById("menu-selection-list");
 
-  const listItem1 = document.createElement("div");
-  listItem1.textContent = "Art Gallery";
-  listItem1.classList.add("menu-item");
-  listItem1.addEventListener("click", () => setMuseumModel(Museum.ART_GALLERY));
+  // const listItem1 = document.createElement("div");
+  // listItem1.textContent = "Art Gallery";
+  // listItem1.classList.add("menu-item");
+  // listItem1.addEventListener("click", () => setMuseumModel(Museum.ART_GALLERY));
 
-  const listItem2 = document.createElement("div");
-  listItem2.textContent = "Louvre Art Museum";
-  listItem2.classList.add("menu-item");
-  listItem2.addEventListener("click", () => setMuseumModel(Museum.LOUVRE));
+  // const listItem2 = document.createElement("div");
+  // listItem2.textContent = "Louvre Art Museum";
+  // listItem2.classList.add("menu-item");
+  // listItem2.addEventListener("click", () => setMuseumModel(Museum.LOUVRE));
 
-  menuList.appendChild(listItem1);
-  menuList.appendChild(listItem2);
+  // menuList.appendChild(listItem1);
+  // menuList.appendChild(listItem2);
 
   menuOpen = true;
 

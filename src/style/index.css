@@ -298,16 +298,17 @@ hr {
 }
 
 .annotation:hover .expanded-annotation {
-    width: 250px;
-    height: 200px;
+    width: 400px;
+    height: 400px;
     padding: 10px;
     min-width: 100px;
     border: 1px solid #fff;
+    z-index: 5000;
 }
 
 .art-title {
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .art-description {
