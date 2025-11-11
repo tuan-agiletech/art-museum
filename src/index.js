@@ -314,21 +314,21 @@ function loadModel() {
           };
 
           annotationDiv.onAnnotationClick = ({ event, id }) => {
-            const { width, height } = getMeshSizeInPixels(child, camera, renderer)
-            const geometrySize = new THREE.Vector3();
+            // const { width, height } = getMeshSizeInPixels(child, camera, renderer)
+            // const geometrySize = new THREE.Vector3();
 
-            if (!child.geometry.boundingBox) {
-              child.geometry.computeBoundingBox();
-            }
+            // if (!child.geometry.boundingBox) {
+            //   child.geometry.computeBoundingBox();
+            // }
 
-            child.geometry.boundingBox.getSize(geometrySize);
+            // child.geometry.boundingBox.getSize(geometrySize);
 
-            // const meshAspect = geometrySize.y / geometrySize.z;
+            // // const meshAspect = geometrySize.y / geometrySize.z;
 
-            displayUploadModal(width / height, {
-              img_id: child.name,
-              museum: currentMuseumId,
-            });
+            // displayUploadModal(width / height, {
+            //   img_id: child.name,
+            //   museum: currentMuseumId,
+            // });
           };
 
           scene.add(label);

@@ -15,12 +15,12 @@ export default class AnnotationDiv{
         this.expandedDiv = document.createElement('div');
         this.expandedDiv.className = 'expanded-annotation';
 
-        const uploadBtn = document.createElement("button")
-        uploadBtn.textContent = "Upload";
-        uploadBtn.classList.add("btn")
-        uploadBtn.addEventListener("click", (event) => {
-            this.onAnnotationClick({event: null, id: this.__id})
-        })
+        // const uploadBtn = document.createElement("button")
+        // uploadBtn.textContent = "Upload";
+        // uploadBtn.classList.add("btn")
+        // uploadBtn.addEventListener("click", (event) => {
+        //     this.onAnnotationClick({event: null, id: this.__id})
+        // })
 
         const container = document.createElement("div")
         container.style.width = "100%"
@@ -29,7 +29,7 @@ export default class AnnotationDiv{
         container.style.alignItems = "center"
         container.style.justifyContent = "center"
 
-        container.appendChild(uploadBtn)
+        // container.appendChild(uploadBtn)
 
         this.expandedDiv.appendChild(container)
 
@@ -37,6 +37,9 @@ export default class AnnotationDiv{
 
         this.onAnnotationClick = onAnnotationClick;
         this.onAnnotationDblClick = onAnnotationDblClick;
+        
+        this.expandedDiv.style.visibility = "hidden";
+        this.annotationDiv.style.visibility = "hidden";
 
         this.annotationDiv.addEventListener("click", this.clickEvent.bind(this))
 
@@ -59,6 +62,8 @@ export default class AnnotationDiv{
     }
 
     setAnnotationDetails(title, description, artist){
+        this.expandedDiv.style.visibility = "visible"
+        this.annotationDiv.style.visibility = "visible";
 
         this.expandedDiv.innerHTML = `
                 <p class="art-title">${title}</p>
