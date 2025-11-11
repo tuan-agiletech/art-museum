@@ -18,7 +18,7 @@ export default class FirstPersonPlayer{
         this.worldOctree = new Octree();
 
 
-        this.playerCollider = new Capsule(new THREE.Vector3(0, 0.35, 0), new THREE.Vector3(0, 1, 0), 0.35); // helps collision detection
+        this.playerCollider = new Capsule(new THREE.Vector3(0, 0.35, 0), new THREE.Vector3(0, 1.6, 0), 0.35); // helps collision detection
         this.playerVelocity = new THREE.Vector3();
         this.playerDirection = new THREE.Vector3();
 
@@ -211,7 +211,7 @@ export default class FirstPersonPlayer{
         if (this.camera.position.y <= - 25) {
     
             this.playerCollider.start.set(0, 0.35, 0);
-            this.playerCollider.end.set(0, 1, 0);
+            this.playerCollider.end.set(0, 1.6, 0);
             this.playerCollider.radius = 0.35;
             this.camera.position.copy(this.playerCollider.end);
             this.camera.rotation.set(0, 0, 0);
