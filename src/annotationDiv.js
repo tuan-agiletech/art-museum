@@ -1,6 +1,6 @@
 
 
-
+const no_cap = "No Title";
 
 export default class AnnotationDiv{
 
@@ -64,6 +64,11 @@ export default class AnnotationDiv{
     setAnnotationDetails(title, description, artist){
         this.expandedDiv.style.visibility = "visible"
         this.annotationDiv.style.visibility = "visible";
+
+        if (title === no_cap) {
+            this.expandedDiv.style.width = "150px"
+            this.expandedDiv.style.maxHeight = "100px"
+        }
 
         this.expandedDiv.innerHTML = `
                 <p class="art-title">${title}</p>
