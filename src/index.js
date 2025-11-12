@@ -80,7 +80,9 @@ renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.VSMShadowMap;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 0.75;
 container.appendChild(renderer.domElement);
 
 window.addEventListener("resize", onWindowResize);
@@ -255,35 +257,37 @@ function loadModel() {
       let count = 0;
       annotationMesh = {};
       gltf.scene.traverse((child) => {
+        console.log("child: ", child.name, child);
         if (child.name === "art_gallery") {
           gallery_mesh = child;
         }
-
-        if (child.isMesh && /^art_holder\d*$/.test(child.name)) {
-          // Regex to match "art_holder", "art_holder1", "art_holder2", etc.
+        console.log('keys', Object.keys(annotationMesh))
+        if (child.isMesh && /^art_IMG/.test(child.name)) {
+          console.log(child.name, child);
+          // Regex to match "art_holder_IMG_7794", "art_holder_IMG_1234", etc.
           count += 1;
           // Create an annotation div element
 
           // annotationDiv.style.width = `50px`
 
-          child.material = new THREE.MeshBasicMaterial();
+          // child.material = new THREE.MeshBasicMaterial();
 
-          const geometry = child.geometry;
-          const uvs = geometry.attributes.uv.array;
+          // const geometry = child.geometry;
+          // const uvs = geometry.attributes.uv.array;
 
-          // Rotate UVs (example: 90 degrees clockwise)
+          // // Rotate UVs (example: 90 degrees clockwise)
+          // // for (let i = 0; i < uvs.length; i += 2) {
+          // //     const u = uvs[i];
+          // //     const v = uvs[i + 1];
+          // //     uvs[i] = v; // Swap u and v
+          // //     uvs[i + 1] = (1 - u) ; // Adjust v accordingly
+          // // }
+
           // for (let i = 0; i < uvs.length; i += 2) {
-          //     const u = uvs[i];
-          //     const v = uvs[i + 1];
-          //     uvs[i] = v; // Swap u and v
-          //     uvs[i + 1] = (1 - u) ; // Adjust v accordingly
+          //   uvs[i + 1] = 1 - uvs[i + 1]; // Invert the V coordinate
           // }
 
-          for (let i = 0; i < uvs.length; i += 2) {
-            uvs[i + 1] = 1 - uvs[i + 1]; // Invert the V coordinate
-          }
-
-          geometry.attributes.uv.needsUpdate = true; // Update UVs
+          // geometry.attributes.uv.needsUpdate = true; // Update UVs
 
           const box = new THREE.Box3().setFromObject(child);
           const center = new THREE.Vector3();
@@ -316,15 +320,11 @@ function loadModel() {
           annotationDiv.onAnnotationClick = ({ event, id }) => {
             // const { width, height } = getMeshSizeInPixels(child, camera, renderer)
             // const geometrySize = new THREE.Vector3();
-
             // if (!child.geometry.boundingBox) {
             //   child.geometry.computeBoundingBox();
             // }
-
             // child.geometry.boundingBox.getSize(geometrySize);
-
             // // const meshAspect = geometrySize.y / geometrySize.z;
-
             // displayUploadModal(width / height, {
             //   img_id: child.name,
             //   museum: currentMuseumId,
@@ -378,10 +378,10 @@ function loadModel() {
             name
           );
 
-          setImageToMesh(
-            annotationMesh[img_id].mesh,
-            `https://gateway.pinata.cloud/ipfs/${img_cid}`
-          );
+          // setImageToMesh(
+          //   annotationMesh[img_id].mesh,
+          //   `https://gateway.pinata.cloud/ipfs/${img_cid}`
+          // );
         });
       });
     },
@@ -416,7 +416,7 @@ function updateAnnotations() {
   // Update the camera's position each frame
   camera.getWorldPosition(camera.position);
   model?.scene.traverse((child) => {
-    if (child.isMesh && /^art_holder\d*$/.test(child.name)) {
+    if (child.isMesh && /^art_holder/.test(child.name)) {
       const box = new THREE.Box3().setFromObject(child);
       const center = new THREE.Vector3();
       box.getCenter(center);
