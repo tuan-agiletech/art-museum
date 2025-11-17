@@ -17,7 +17,7 @@ const port = process.env.PORT || 3000;
 let corsOptions = {
   origin: [
     "http://localhost:8080",
-    process.env.FRONTEND_URL || "https://art-museum-production.up.railway.app",
+    process.env.FRONTEND_URL || "https://virtual-art-museum.netlify.app",
   ],
 };
 
